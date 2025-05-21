@@ -1,0 +1,39 @@
+CC=ccpsx
+CFLAGS=-O3 -ansi -Wall -Werror -pedantic-errors -Wshadow
+
+TARGET=PSX
+CPE_FILE=$(TARGET).CPE
+SYM_FILE=$(TARGET).SYM
+MAP_FILE=MEM.MAP
+
+SRC_DIR=SRC
+INCL_DIR=INCLUDE
+
+OBJ_FILES = MAIN.OBJ
+
+all: $(OBJ_FILES)
+	-@mkdir BIN
+	@echo Building $(CPE_FILE), $(SYM_FILE), and $(MAP_FILE)...
+	@rem GNU Make treats `$8` like a variable. Ask me how I know... :^)
+	$(CC) -Xo$$80010000 BIN/*.OBJ -o$(CPE_FILE),$(SYM_FILE),$(MAP_FILE) -L $(LIBRARY_PATH) -llibpad -llibc2 -llibcd
+	@echo Building $(CPE_FILE)...
+	cpe2x /ca $(CPE_FILE)
+
+%.OBJ: $(SRC_DIR)/%.C
+	-@mkdir BIN
+	@echo Compiling $^...
+	$(CC) $(CFLAGS) -c -oBIN/$@ $^ -I $(INCL_DIR)
+
+full: all
+	makecd
+
+clean:
+	del *.exe
+	del *.cpe
+	del *.sym
+	del *.map
+	del bin\*.obj
+	rmdir bin
+	del cdrom\*.img
+	del cdrom\*.iso
+	rmdir cdrom

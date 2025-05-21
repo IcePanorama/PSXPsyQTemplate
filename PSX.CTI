@@ -1,0 +1,43 @@
+Disc XA_PSX
+  LeadIn XA
+    Empty    1000
+    PostGap  150
+  EndTrack
+
+  Track	XA
+    Pause	150
+    Volume	ISO9660
+      SystemArea c:\psyq\cdgen\lcnsfile\licensea.dat
+
+      PrimaryVolume
+        SystemIdentifier        "PLAYSTATION"
+        VolumeIdentifier        "CHANGE_ME"
+        VolumeSetIdentifier     "CHANGE_ME"
+        PublisherIdentifier	"SEGFAULTEDDREAMS"
+        DataPreparerIdentifier  "SEGFAULTEDDREAMS"
+        ApplicationIdentifier   "CHANGE_ME"
+
+        Lpath
+        OptionalLpath
+        Mpath
+        OptionalMpath
+
+        Hierarchy
+          File	PSX.EXE;1
+            XAFileAttributes	Form1	Data
+            Source	c:\psyq\projects\temp\psx.exe
+          EndFile
+
+          File	SYSTEM.CNF;1
+            XAFileAttributes	Form1	Data
+            Source	c:\psyq\projects\temp\system.cnf
+          EndFile
+        EndHierarchy
+      EndPrimaryVolume
+    EndVolume
+    PostGap	150
+  EndTrack
+  Leadout	XA
+    Empty	150
+  EndTrack
+EndDisc
