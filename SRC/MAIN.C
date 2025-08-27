@@ -13,6 +13,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+#include "sfd_ints.h"
 #include "sfd_rndr.h"
 #include "sfd_tick.h"
 
@@ -21,36 +22,25 @@
 int
 main (void)
 {
-  unsigned long ulPrev, ulCurr, ulElapsed;
-  unsigned long ulNFrames = 0, ulLag = 0, ulLastTicks = 0;
-  unsigned char ucFPS = 1;
+  u32_t u32Prev, u32Curr, u32Elapsed;
+  u32_t u32Lag = 0;
 
   puts ("Hello World!\n");
   SFDRndrInit ();
-  ulPrev = SFD_GET_TICKS ();
-
+  u32Prev = SFD_GET_TICKS ();
   while (1)
   {
-    ulCurr = SFD_GET_TICKS ();
-    ulElapsed = ulCurr - ulPrev;
-    ulPrev = ulCurr;
-    ulLag += ulElapsed;
+    u32Curr = SFD_GET_TICKS ();
+    u32Elapsed = u32Curr - u32Prev;
+    u32Prev = u32Curr;
+    u32Lag += u32Elapsed;
 
-    while (ulLag >= (SFD_TICKS_PER_UPDATE))
+    while (u32Lag >= (SFD_TICKS_PER_UPDATE))
     {
-      printf ("FPS: %d\n", ucFPS);
-      ulLag -= (SFD_TICKS_PER_UPDATE);
+      u32Lag -= (SFD_TICKS_PER_UPDATE);
     }
 
     SFDDrawFrm ();
-
-    ulNFrames++;
-    if ((ulCurr - ulLastTicks) >= (SFD_TICKS_PER_SEC))
-    {
-      ucFPS = ulNFrames;
-      ulNFrames = 0;
-      ulLastTicks = ulCurr;
-    }
   }
 
   return 0;

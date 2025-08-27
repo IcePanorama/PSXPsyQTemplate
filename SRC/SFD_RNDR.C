@@ -14,16 +14,11 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include "sfd_rndr.h"
-
-#include <sys/types.h>
-#include <libgte.h>
-#include <libgpu.h>
-#include <libgs.h>
-#include <libetc.h>
+#include "sfd_gpui.h"
 
 #define SCR_WIDTH   (320)
 #define SCR_HEIGHT  (240)
-#define OT_LEN     (4096)
+#define OT_LEN (4096)
 
 struct SScrBuff
 {
@@ -51,8 +46,9 @@ SFDRndrInit (void)
 
   rgBuffs[0].draw.isbg = rgBuffs[1].draw.isbg = 1;
 
-  setRGB0 (&rgBuffs[0].draw, 127, 127, 127);
-  setRGB0 (&rgBuffs[1].draw, 127, 127, 127);
+  /* Annoying color so you remember to change this! :^) */
+  setRGB0 (&rgBuffs[0].draw, 0xFF, 0, 0xFF);
+  setRGB0 (&rgBuffs[1].draw, 0xFF, 0, 0xFF);
 
   SetDispMask (1);
 }

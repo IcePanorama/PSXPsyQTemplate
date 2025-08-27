@@ -1,4 +1,11 @@
-/*  Copyright (C) 2025  SegFaultedDreams
+/**
+ *  sfd_gpui.h - includes for working with the gpu/gte.
+ *  CC is really particular about the order of these. They don't include the
+ *  headers they need, nor does the documentation say what the correct order of
+ *  inclusion is. This header eliminates the headache associated with this. The
+ *  correct order presented here was found through trial and error.
+ *
+ *  Copyright (C) 2025  SegFaultedDreams
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -13,6 +20,13 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#include "sfd_tick.h"
+#ifndef _SFD_GPU_INCLUDES_H_
+#define _SFD_GPU_INCLUDES_H_
 
-unsigned long ulSFDTicks = 0;
+#include <sys/types.h>
+#include <libgte.h>
+#include <libgpu.h>
+#include <libgs.h>
+#include <libetc.h>
+
+#endif /* _SFD_GPU_INCLUDES_H_ */

@@ -21,7 +21,7 @@
 
 #define SFD_GET_TICKS() (VSync (-1))
 
-#define SFD_TICKS_PER_UPDATE  (4) // `SFD_TICKS_PER_SEC`/4 = fixed 15 fps update
-#define SFD_TICKS_PER_SEC    (60)
+#define SFD_TICKS_PER_UPDATE (4) // target: 15 fps update, 60 fps render
+#define SFD_TICKS_PER_SEC (60)
 
 #endif /* _SFD_GLOBAL_TICKS_H_ */
